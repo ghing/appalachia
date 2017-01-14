@@ -1,0 +1,27 @@
+{
+  "name": "appalachia",
+  "version": "0.1.0",
+  "description": "GeoJSON file of counties in Appalachia, as defined by the Appalachian Regional Commission",
+  "main": "appalachia.geojson",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create_build_dir": "mkdir -p build",
+    "download_county_geojson": "countyjson 500k > build/us_counties.geojson",
+    "download_county_data": "wget -O build/Subregions_2009_Data.xls http://www.arc.gov/assets/maps/related/Subregions_2009_Data.xls",
+    "create_county_json": "in2csv build/Subregions_2009_Data.xls | tail --lines +5 | csvtojson --checkType=false > build/arc_counties.json",
+    "create_appalachia_geojson": "./bin/joinjson.js --leftprop features ./build/us_counties.geojson properties.GEOID ./build/arc_counties.json FIPS | ./bin/filterjson.js --prop features - \"typeof val.properties.SUBREGION != 'undefined'\" > appalachia.geojson",
+    "build": "run-s create_build_dir download_county_geojson download_county_data create_county_json create_appalachia_geojson",
+    "clean": "rm appalachia.geojson; rm -rf ./build"
+  },
+  "keywords": [
+    "Appalachia"
+  ],
+  "author": "Geoff Hing",
+  "license": "MIT",
+  "devDependencies": {
+    "census-boundaries": "git+https://github.com/ghing/census-boundaries.git",
+    "minimist": "^1.2.0",
+    "npm-run-all": "^4.0.0",
+    "safe-eval": "^0.3.0"
+  }
+}
