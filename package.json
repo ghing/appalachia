@@ -23,5 +23,9 @@
     "minimist": "^1.2.0",
     "npm-run-all": "^4.0.0",
     "safe-eval": "^0.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ghing/appalachia.git"
   }
 }
