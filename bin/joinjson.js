@@ -3,30 +3,9 @@
 // TODO: Document CLI interface, add -h flag
 
 var argv = require('minimist')(process.argv.slice(2));
-var fs = require('fs');
+var readFileAsync = require('../lib/util').readFileAsync;
+var select = require('../lib/utl').select;
 
-// TODO: Factor out and document utility functions
-
-function readFileAsync(file, encoding, cb) {
-  if (cb) return fs.readFile(file, encoding, cb);
-
-  return new Promise(function(resolve, reject) {
-    fs.readFile(file, encoding, function (err, data) {
-      if (err) return reject(err);
-      resolve(data);
-    });
-  });
-}
-
-function select(obj, prop) {
-  var o = obj;
-
-  prop.split('.').forEach(function(p) {
-    o = o[p];
-  });
-
-  return o;
-}
 
 function lastProp(propPath) {
   var bits = propPath.split('.');
@@ -70,7 +49,7 @@ Promise.all([left, right]).then(function(data) {
   // Build a lookup table of objects from the right dataset
   rightLookup = right.reduce(function(prev, val) {
     var k = select(val, rightKey);
-    var prop = lastProp(rightKey); 
+    var prop = lastProp(rightKey);
     prev[k] = Object.assign({}, val);
     delete prev[k][prop];
     return prev;

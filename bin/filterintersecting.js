@@ -1,26 +1,14 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
 var argv = require('minimist')(process.argv.slice(2));
 var intersect = require('turf').intersect;
-
-// TODO: Factor out and document utility functions
-
-function readFileAsync(file, encoding, cb) {
-  if (cb) return fs.readFile(file, encoding, cb);
-
-  return new Promise(function(resolve, reject) {
-    fs.readFile(file, encoding, function(err, data) {
-      if (err) return reject(err);
-      resolve(data);
-    })
-  });
-}
+var readFileAsync = require('../lib/util').readFileAsync;
 
 var singleFeatureFile = argv._[0],
     multiFeatureFile = argv._[1],
     jsonStringSingle,
     jsonStringMulti;
+
 
 jsonStringSingle = readFileAsync(singleFeatureFile);
 jsonStringMulti = readFileAsync(multiFeatureFile);
