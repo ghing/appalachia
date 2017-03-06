@@ -1,6 +1,6 @@
 {
   "name": "appalachia",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "GeoJSON file of counties in Appalachia, as defined by the Appalachian Regional Commission",
   "main": "appalachia.geojson",
   "scripts": {

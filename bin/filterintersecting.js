@@ -21,7 +21,19 @@ Promise.all([jsonStringSingle, jsonStringMulti]).then(function(data) {
 
   outputFeatures = multi.features.filter(function(f) {
      var intersection = intersect(single.features[0], f);
-     return typeof intersection != 'undefined';
+
+     if (typeof intersection == 'undefined') {
+       // No intersection
+       return false;
+     }
+
+     if (intersection.geometry.type == 'MultiLineString') {
+       // Insercting feature is a `MultiLineString`, this means the features
+       // only border
+       return false;
+     }
+
+     return true;
   });
 
   console.log(JSON.stringify({
