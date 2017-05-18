@@ -2,7 +2,7 @@
 
 var argv = require('minimist')(process.argv.slice(2));
 var intersect = require('turf').intersect;
-var readFileAsync = require('../lib/util').readFileAsync;
+var readFileAsync = require('./util').readFileAsync;
 
 var singleFeatureFile = argv._[0],
     multiFeatureFile = argv._[1],

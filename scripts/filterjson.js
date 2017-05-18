@@ -4,9 +4,9 @@
 
 var argv = require('minimist')(process.argv.slice(2));
 var safeEval = require('safe-eval');
-var readFileAsync = require('../lib/util').readFileAsync;
-var readFromStdin = require('../lib/util').readFromStdin;
-var select = require('../lib/util').select;
+var readFileAsync = require('./util').readFileAsync;
+var readFromStdin = require('./util').readFromStdin;
+var select = require('./util').select;
 
 
 function setProp(obj, prop, val) {

@@ -3,8 +3,8 @@
 // TODO: Document CLI interface, add -h flag
 
 var argv = require('minimist')(process.argv.slice(2));
-var readFileAsync = require('../lib/util').readFileAsync;
-var select = require('../lib/utl').select;
+var readFileAsync = require('./util').readFileAsync;
+var select = require('./util').select;
 
 
 function lastProp(propPath) {
