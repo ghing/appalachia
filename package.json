@@ -1,6 +1,6 @@
 {
   "name": "appalachia",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "GeoJSON file of counties in Appalachia, as defined by the Appalachian Regional Commission",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,8 @@
     "merge_appalachia_counties": "geo2topo counties=appalachia.geojson | topomerge appalachia=counties | topo2geo appalachia=build/appalachia_single.geojson",
     "create_congressional_districts_114_geojson": "./scripts/filterintersecting.js build/appalachia_single.geojson build/cd_114.geojson > appalachia-congressional-districts-114.geojson",
     "create_congressional_districts_114_json": "./scripts/ungeojson.js --collection=districts appalachia-congressional-districts-114.geojson > appalachia-congressional-districts-114.json",
-    "build:congressional_districts_114": "run-s download_congressional_districts_114_geojson merge_appalachia_counties create_congressional_districts_114_geojson create_congressional_districts_114_json",
+    "build:congressional_districts_114": "run-s download_congressional_districts_114_geojson merge_appalachia_counties create_congressional_districts_114_geojson create_congressional_districts_114_json build:congressional_districts_114_lookup",
+    "build:congressional_districts_114_lookup": "./scripts/createcdlookup.js appalachia-congressional-districts-114.geojson > lib/cd/cd114.js",
     "build": "run-s build:counties build:congressional_districts_114",
     "clean": "rm appalachia.geojson appalachia-congressional-districts-114.geojson; rm -rf ./build"
   },
