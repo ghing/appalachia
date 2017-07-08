@@ -36,9 +36,11 @@ jsonString.then(function(buffer) {
   var collection = JSON.parse(buffer);
 
   var svgStrings = converter.convert(collection);
+  var width = svgOpts.viewportSize.width;
+  var height = svgOpts.viewportSize.height;
 
   console.log("<?xml version='1.0' encoding='UTF-8' standalone='no'?>");
-  console.log('<svg xmlns="http://www.w3.org/2000/svg">');
+  console.log('<svg xmlns="http://www.w3.org/2000/svg" width="' + width + '"' + ' height="' + height + '"' + '>');
 
   svgStrings.forEach(function(s) {
     console.log(s);
