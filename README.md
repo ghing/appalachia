@@ -33,9 +33,10 @@ Technical details
 
 To re-generate the GeoJSON file, you'll need:
 
-* A computer running Mac OS X or Linux
-* wget
-* [csvkit](https://github.com/wireservice/csvkit)
+- A computer running Mac OS X or Linux
+- Node.js
+- wget
+- [csvkit](https://github.com/wireservice/csvkit)
 
 First, clone the git repository for this project:
 
@@ -44,6 +45,10 @@ First, clone the git repository for this project:
 Change directory to the working copy of the project:
 
     cd appalachia
+
+Install Node.js developer dependencies:
+
+    npm install --dev
 
 Run an npm script to download the source data, process it, and output the GeoJSON file:
 
