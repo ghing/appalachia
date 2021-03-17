@@ -54,6 +54,24 @@ Run an npm script to download the source data, process it, and output the GeoJSO
 
     npm run build
 
+### Installing system libraries
+
+On some systems, you may have to install underlying libraries to build some of the Node dependencies.
+
+For example, I've had to install Development files for International Components for Unicode:
+
+```
+sudo apt-get install libicu-dev
+```
+
+I've also had to install Geospatial Data Abstraction Library - Development files:
+
+```
+sudo apt-get install libgdal-dev
+```
+
+TODO: Document commands needed to install these libraries with Homebrew.
+
 Data sources
 ------------
 
