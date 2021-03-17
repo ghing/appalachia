@@ -8,7 +8,7 @@
     "create_build_dir": "mkdir -p build",
     "download_county_geojson": "countyjson 500k > build/us_counties.geojson",
     "download_congressional_districts_114_geojson": "cdjson --state NY --state PA --state OH --state KY --state WV --state MD --state VA --state TN --state NC --state MS --state SC --state AL --state GA 500k 114 > build/cd_114.geojson",
-    "create_county_json": "in2csv data/source/Subregions_2009_Data.xls | tail --lines +5 | csvtojson --checkType=false > build/arc_counties.json",
+    "create_county_json": "in2csv data/source/Subregions_2009_Data.xls | tail --lines +5 | csvjson --no-inference > build/arc_counties.json",
     "create_appalachia_geojson": "./scripts/joinjson.js --leftprop features ./build/us_counties.geojson properties.GEOID ./build/arc_counties.json FIPS | ./scripts/filterjson.js --prop features - \"typeof val.properties.SUBREGION != 'undefined' || val.properties.GEOID == '51590' || val.properties.GEOID == '51720' || val.properties.GEOID == '51520' || val.properties.GEOID == '51640' || val.properties.GEOID == '51750' || val.properties.GEOID == '51690' || val.properties.GEOID == '51580' || val.properties.GEOID == '51678' || val.properties.GEOID == '51530' \" > appalachia.geojson",
     "create_appalachia_json": "./scripts/ungeojson.js --collection=counties appalachia.geojson > appalachia.json",
     "create_appalachia_svg": "./scripts/geojson2svg.js appalachia.geojson 600x400 \\\"-90.1986,32.232,-74.1647,42.9084\\\" > appalachia.svg",
