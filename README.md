@@ -10,11 +10,11 @@ This package contains GeoJSON files useful for topical mapping.
 
 ### Counties
 
-counties.geojson
+- `counties.geojson`
 
 ### Congressional districts (114th congress district boundaries)
 
-appalachia-congressional-districts-114.geojson
+- `appalachia-congressional-districts-114.geojson`
 
 Node interface
 --------------
@@ -49,3 +49,9 @@ Run an npm script to download the source data, process it, and output the GeoJSO
 
     npm run build
 
+Data sources
+------------
+
+- Appalachia Subregions
+  - URL: https://web.archive.org/web/*/http://www.arc.gov/assets/maps/related/Subregions_2009_Data.xls
+  - Agency: Appalachian Regional Commission
