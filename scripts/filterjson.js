@@ -3,10 +3,10 @@
 // TODO: Document CLI interface, add -h flag
 
 var argv = require('minimist')(process.argv.slice(2));
-var safeEval = require('safe-eval');
 var readFileAsync = require('./util').readFileAsync;
 var readFromStdin = require('./util').readFromStdin;
 var select = require('./util').select;
+const {VM} = require('vm2');
 
 
 function setProp(obj, prop, val) {
@@ -54,7 +54,10 @@ jsonString.then(function(s) {
   }
 
   collection = collection.filter(function(val) {
-     return safeEval(test, {val: val});
+    const vm = new VM({
+      sandbox: {val: val}
+    });
+    return vm.run(test);
   });
 
   if (prop) {
