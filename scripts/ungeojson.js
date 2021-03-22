@@ -11,7 +11,7 @@
  */
 
 var argv = require('minimist')(process.argv.slice(2));
-var readFileAsync = require('../lib/util').readFileAsync;
+var readFileAsync = require('./util').readFileAsync;
 
 var filePath = argv._[0],
     collectionName = argv.collection || 'items',
